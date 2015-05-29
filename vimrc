@@ -105,14 +105,15 @@ set history=1000
 set nowrap
 set tabstop=4
 
-"   set background=dark
-"   highlight Comment guifg=DarkGreen ctermfg=DarkGreen
+"ciemne tło komentarze ciemno niebieskie
+"set background=dark
+"highlight Comment guifg=DarkGreen ctermfg=Grey
 " Pracuje na jasnym tle. Komentarze chce miec zielone.
-set background=light
-highlight Comment guifg=Grey ctermfg=Grey
+"set background=light
+"highlight Comment guifg=Grey ctermfg=Grey
 
 "   dwa ponizsze do oznaczania tabulacji oraz konczacych spacji
-highlight SpecialKey guifg=LightGrey ctermfg=LightGrey
+"highlight SpecialKey guifg=DarkBlue ctermfg=DarkBlue
 "set list listchars=trail:·,tab:»·
 set list listchars=trail:.,tab:>.
 
@@ -148,15 +149,25 @@ set encoding=utf8
 "set encoding=iso8859-2
 "set fileencoding=iso8859-2
 
+"numerowanie linii
+map <F2> :let &number=1-&number<CR>
+
+"wyłączenie podświetlenia 
+map <C-h> :noh<CR>
 " Nacisne F5 to przejdzie mi na ciemne tlo i ciemnosielone komentarze
 " Nacisne F6 to przejdzie mi na jasne tlo i zielone komentarze
-map <F5> :set background=dark<CR>:hi Comment guifg=DarkGrey ctermfg=DarkGrey<CR>:hi Pmenu ctermbg=Grey ctermfg=Black<CR>:hi PmenuSel ctermbg=Red ctermfg=White<CR>
+map <F5> :set background=light<CR>:hi Comment guifg=DarkGrey ctermfg=DarkGrey<CR>:hi Pmenu ctermbg=Grey ctermfg=Black<CR>:hi PmenuSel ctermbg=Red ctermfg=White<CR>
 map <F6> :set background=light<CR>:hi Comment guifg=Grey ctermfg=Grey<CR>:hi SpecialKey guifg=DarkBlue ctermfg=DarkBlue<CR>
-map <F7> :set background=light<CR>:hi Comment guifg=LightBlue ctermfg=LightBlue<CR>:hi SpecialKey guifg=DarkBlue ctermfg=DarkBlue<CR>
+map <F7> :set background=dark<CR>:hi Comment guifg=LightGrey ctermfg=LightGrey<CR>:hi SpecialKey guifg=LightBlue ctermfg=LightBlue<CR>
+" Nacisniecie F8 odpali edytowany pythonowy skrypt
+map <F8> :w !python<CR>
 map <C-L> :!ctags -R --c++-kinds=+p --fields=+iaS --extra=+q .<CR><CR>
-" kolory, niezaleznie od powyzszych, dla jasnego tla:
-hi Comment guifg=LightBlue ctermfg=LightBlue
-hi Constant guifg=DarkGrey ctermfg=DarkGrey
+" podstawowe kolory, niezaleznie od powyzszych, odpowiednik F6:
+set background=light
+hi Comment guifg=Grey ctermfg=Grey
+hi SpecialKey guifg=DarkBlue ctermfg=DarkBlue
+"hi Comment guifg=LightBlue ctermfg=LightBlue
+"hi Constant guifg=DarkGrey ctermfg=DarkGrey
 hi jediFat term=bold,underline cterm=bold,underline ctermbg=0 ctermfg=Grey gui=bold,underline guifg=White guibg=#555555
 
 " omni-complete, czyli Ctrl+X
