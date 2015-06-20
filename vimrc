@@ -154,6 +154,9 @@ map <F2> :let &number=1-&number<CR>
 
 "wyłączenie podświetlenia 
 map <C-h> :noh<CR>
+"dodanie tabulacji dla zaznaczonego tekstu 
+vmap <Tab> ><CR>
+vmap <S-Tab> <<CR>
 " Nacisne F5 to przejdzie mi na ciemne tlo i ciemnosielone komentarze
 " Nacisne F6 to przejdzie mi na jasne tlo i zielone komentarze
 map <F5> :set background=light<CR>:hi Comment guifg=DarkGrey ctermfg=DarkGrey<CR>:hi Pmenu ctermbg=Grey ctermfg=Black<CR>:hi PmenuSel ctermbg=Red ctermfg=White<CR>
