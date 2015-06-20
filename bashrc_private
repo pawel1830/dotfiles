@@ -48,12 +48,12 @@ if [ -n "$force_color_prompt" ]; then
     fi
 fi
 
-if [ "$color_prompt" = yes ]; then
-	PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]$(__git_ps1 " (git: %s)")\$ '
-else
-	PS1='${debian_chroot:+($debian_chroot)}\u@\h:\w$(__git_ps1 " (git: %s)")\$ '
-fi
-unset color_prompt force_color_prompt
+#if [ "$color_prompt" = yes ]; then
+#	PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]$(__git_ps1 " (git: %s)")\$ '
+#else
+#	PS1='${debian_chroot:+($debian_chroot)}\u@\h:\w$(__git_ps1 " (git: %s)")\$ '
+#fi
+#unset color_prompt force_color_prompt
 
 
 #========================
@@ -68,6 +68,21 @@ if [ -x /usr/bin/dircolors ]; then
     alias fgrep='fgrep --color=auto'
     alias egrep='egrep --color=auto'
 fi
+
+# cpu scaling
+alias low='sudo cpupower frequency-set -g powersave'
+alias mid='sudo cpupower frequency-set -g ondemand'
+alias high='sudo cpupower frequency-set -g performance'
+
+# To check a process is running in a box with a heavy load: pss
+alias pss='ps -Af | grep $1'
+
+# usefull alias to browse your filesystem for heavy usage quickly
+alias ducks='ls -A | grep -v -e '\''^\.\.$'\'' |xargs -i du -ks {} |sort -rn |head -16 | awk '\''{print $2}'\'' | xargs -i du -hs {}'
+
+# cool colors for manpages
+alias man="TERMINFO=~/.terminfo TERM=mostlike LESS=C PAGER=less man"
+
 
 # some more ls aliases
 alias ll='ls -alF'

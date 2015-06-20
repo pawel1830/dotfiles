@@ -36,6 +36,7 @@ for file in \
 	git-completion.sh \
 	git-prompt.sh \
 	bashrc_private \
+	bashrc_prompt \
 	vimrc \
 	screenrc \
 	tmux.conf
@@ -52,6 +53,17 @@ else
 	echo "updating ~/.bashrc to load ~/.bashrc_private"
 	echo "source ~/.bashrc_private" >>~/.bashrc
 fi
+
+# setup .bashrc_prompt
+
+if grep -q "source ~/.bashrc_prompt" "${HOME}/.bashrc"; then
+	echo "~/.bashrc still loading ~/.bashrc_prompt"
+else
+	echo "updating ~/.bashrc to load ~/.bashrc_prompt"
+	echo "source ~/.bashrc_prompt" >>~/.bashrc
+fi
+
+
 
 if [[ -d ~/.vim/bundle/neobundle.vim ]]; then
 	# FIXME: do we really need this?
