@@ -34,6 +34,8 @@ NeoBundle 'davidhalter/jedi-vim', {'autoload':{'filetypes':['python']}} "{{{
 "	let g:jedi#completions_enabled = 0
 ""}}}
 
+NeoBundle 'scrooloose/nerdtree'
+NeoBundle 'scrooloose/nerdcommenter'
 NeoBundle 'scrooloose/syntastic' "{{{
 	"let g:syntastic_check_on_open=1
 	let g:syntastic_enable_balloons = 0
@@ -103,6 +105,7 @@ set laststatus=2
 set history=1000
 
 set nowrap
+
 set tabstop=4
 
 "ciemne tło komentarze ciemno niebieskie
@@ -149,8 +152,25 @@ set encoding=utf8
 "set encoding=iso8859-2
 "set fileencoding=iso8859-2
 
+let mapleader = ","
+map <Leader>k <c-w>j
+map <Leader>l <c-w>k
+map <Leader>j <c-w>l
+map <Leader>h <c-w>h
+
 "numerowanie linii
 map <F2> :let &number=1-&number<CR>
+
+"włączenie drzewka z plikami
+map <Leader>t :NERDTreeToggle<CR>
+autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif
+
+"Wyszukiwanie i zamiana zaznaczonego tekstu
+map <C-r> "hy:%s/<C-r>h//c<left><left>
+
+"łatwiejsze przeskakiwanie pomiędzy kartami
+map <C-n> <esc>:tabprevious<CR>
+map <C-m> <esc>:tabnext<CR>
 
 "wyłączenie podświetlenia 
 map <C-h> :noh<CR>
