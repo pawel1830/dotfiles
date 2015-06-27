@@ -44,6 +44,13 @@ do
 	install_or_update "${file}" "${HOME}/.${file}";
 done
 
+# cool colors for manpages
+if ! [ -f ~/.terminfo/mostlike.txt ]
+then
+		curl http://nion.modprobe.de/mostlike.txt --create-dirs -o ~/.terminfo/mostlike.txt
+		tic ~/.terminfo/mostlike.txt
+fi
+
 
 # setup .bashrc_private
 
