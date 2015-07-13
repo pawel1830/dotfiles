@@ -23,7 +23,6 @@ NeoBundle 'Shougo/vimproc.vim', {
 	\ }
 
 NeoBundle 'bling/vim-airline'
-
 " git utility
 NeoBundle 'tpope/vim-fugitive'
 
@@ -50,7 +49,7 @@ filetype indent on
 
 " golang syntax, compiler etc
 NeoBundle 'jnwhiteh/vim-golang'
-
+NeoBundle 'ervandew/screen'
 " syntax for thrift files
 NeoBundle 'sprsquish/thrift.vim'
 
@@ -210,4 +209,4 @@ autocmd FileType python setlocal
 	\ textwidth=120
 	\ smarttab
 	\ expandtab
-
+autocm FileType python :ScreenShell python
