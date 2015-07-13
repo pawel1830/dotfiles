@@ -38,6 +38,7 @@ for file in \
 	bashrc_private \
 	bashrc_prompt \
 	vimrc \
+	inputrc \
 	screenrc \
 	tmux.conf
 do
@@ -50,8 +51,6 @@ then
 		curl http://nion.modprobe.de/mostlike.txt --create-dirs -o ~/.terminfo/mostlike.txt
 		tic ~/.terminfo/mostlike.txt
 fi
-
-
 # setup .bashrc_private
 
 if grep -q "source ~/.bashrc_private" "${HOME}/.bashrc"; then
