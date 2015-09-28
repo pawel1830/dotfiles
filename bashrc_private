@@ -79,7 +79,8 @@ alias high='sudo cpupower frequency-set -g performance'
 alias pss='ps -Af | grep $1'
 
 # usefull alias to browse your filesystem for heavy usage quickly
-alias ducks='ls -A | grep -v -e '\''^\.\.$'\'' |xargs -i du -ks {} |sort -rn |head -16 | awk '\''{print $2}'\'' | xargs -i du -hs {}'
+#alias ducks='ls -A | grep -v -e '\''^\.\.$'\'' |xargs -i du -ks {} |sort -rn |head -16 | awk '\''{print $2}'\'' | xargs -i du -hs {}'
+alias ducks='du -h -d 1 | sort -h' 
 
 # cool colors for manpages
 alias man="TERMINFO=~/.terminfo TERM=mostlike LESS=C PAGER=less man"
@@ -98,6 +99,7 @@ alias install='sudo apt-get install $1'
 alias update='sudo apt-get update'
 alias upgrade='update && sudo apt-get dist-upgrade'
 alias remove='sudo apt-get remove $1'
+alias search='apt-cache search $1'
 
 #====================
 # git and svn stuff
