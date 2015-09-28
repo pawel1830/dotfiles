@@ -22,6 +22,15 @@ NeoBundle 'Shougo/vimproc.vim', {
 	\   }
 	\ }
 
+" kolory
+NeoBundle 'altercation/vim-colors-solarized'
+NeoBundle 'vim-scripts/peaksea'
+NeoBundle 'wesgibbs/vim-irblack'
+NeoBundle 'tomasr/molokai'
+NeoBundle 'therubymug/vim-pyte'
+NeoBundle 'xolox/vim-misc'
+NeoBundle 'xolox/vim-colorscheme-switcher'
+
 NeoBundle 'bling/vim-airline'
 " git utility
 NeoBundle 'tpope/vim-fugitive'
@@ -32,16 +41,23 @@ NeoBundle 'davidhalter/jedi-vim', {'autoload':{'filetypes':['python']}} "{{{
 "	let g:jedi#popup_on_dot=0
 "	let g:jedi#completions_enabled = 0
 ""}}}
+NeoBundle 'hdima/python-syntax'
 
 NeoBundle 'scrooloose/nerdtree'
 NeoBundle 'scrooloose/nerdcommenter'
-NeoBundle 'scrooloose/syntastic' "{{{
+"NeoBundle 'scrooloose/syntastic' "{{{
+	
 	"let g:syntastic_check_on_open=1
-	let g:syntastic_enable_balloons = 0
-	let g:syntastic_python_checkers = ['flake8']
-	let g:syntastic_c_checkers = ['cppcheck', 'make']
-	let g:syntastic_cpp_checkers = ['cppcheck', 'make']
-"}}}
+	"let g:syntastic_enable_balloons = 1
+	"let g:syntastic_python_checkers = ['flake8']
+	"let g:syntastic_c_checkers = ['cppcheck', 'make']
+	"let g:syntastic_cpp_checkers = ['cppcheck', 'make']
+""}}}
+
+	"set statusline+=%#warningmsg#
+	"set statusline+=%{SyntasticStatuslineFlag()}
+	"set statusline+=%*
+
 
 filetype on
 filetype plugin on
@@ -49,7 +65,6 @@ filetype indent on
 
 " golang syntax, compiler etc
 NeoBundle 'jnwhiteh/vim-golang'
-NeoBundle 'ervandew/screen'
 " syntax for thrift files
 NeoBundle 'sprsquish/thrift.vim'
 
@@ -178,16 +193,21 @@ vmap <Tab> ><CR>
 vmap <S-Tab> <<CR>
 " Nacisne F5 to przejdzie mi na ciemne tlo i ciemnosielone komentarze
 " Nacisne F6 to przejdzie mi na jasne tlo i zielone komentarze
-map <F5> :set background=light<CR>:hi Comment guifg=DarkGrey ctermfg=DarkGrey<CR>:hi Pmenu ctermbg=Grey ctermfg=Black<CR>:hi PmenuSel ctermbg=Red ctermfg=White<CR>
-map <F6> :set background=light<CR>:hi Comment guifg=Grey ctermfg=Grey<CR>:hi SpecialKey guifg=DarkBlue ctermfg=DarkBlue<CR>
-map <F7> :set background=dark<CR>:hi Comment guifg=LightGrey ctermfg=LightGrey<CR>:hi SpecialKey guifg=LightBlue ctermfg=LightBlue<CR>
-" Nacisniecie F8 odpali edytowany pythonowy skrypt
-map <F8> :w !python<CR>
+"map <F5> :set background=light<CR>:hi Comment guifg=DarkGrey ctermfg=DarkGrey<CR>:hi Pmenu ctermbg=Grey ctermfg=Black<CR>:hi PmenuSel ctermbg=Red ctermfg=White<CR>
+"map <F6> :set background=light<CR>:hi Comment guifg=Grey ctermfg=Grey<CR>:hi SpecialKey guifg=DarkBlue ctermfg=DarkBlue<CR>
+"map <F7> :set background=dark<CR>:hi Comment guifg=LightGrey ctermfg=LightGrey<CR>:hi SpecialKey guifg=LightBlue ctermfg=LightBlue<CR>
+map <F7> :let &background = ( &background == "dark"? "light" : "dark" )<CR>
+"podstawowe kolory
+colorscheme peachpuff
+set background=light
+"let g:molokai_original = 1
+
+" Nacisniecie F5 odpali edytowany pythonowy skrypt
+map <F5> :w !python<CR>
 map <C-L> :!ctags -R --c++-kinds=+p --fields=+iaS --extra=+q .<CR><CR>
 " podstawowe kolory, niezaleznie od powyzszych, odpowiednik F6:
-set background=light
-hi Comment guifg=Grey ctermfg=Grey
-hi SpecialKey guifg=DarkBlue ctermfg=DarkBlue
+"hi Comment guifg=Grey ctermfg=Grey
+"hi SpecialKey guifg=DarkBlue ctermfg=DarkBlue
 "hi Comment guifg=LightBlue ctermfg=LightBlue
 "hi Constant guifg=DarkGrey ctermfg=DarkGrey
 hi jediFat term=bold,underline cterm=bold,underline ctermbg=0 ctermfg=Grey gui=bold,underline guifg=White guibg=#555555
@@ -209,4 +229,3 @@ autocmd FileType python setlocal
 	\ textwidth=120
 	\ smarttab
 	\ expandtab
-autocm FileType python :ScreenShell python
