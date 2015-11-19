@@ -25,7 +25,6 @@ source ~/.git-prompt.sh
 source ~/.git-flow-completion.bash
 
 export VIRTUAL_ENV_DISABLE_PROMPT=1
-
 add_venv_info () {
 if [ "x" != x ] ; then
 	VIRT_ENV_TXT=""
@@ -46,9 +45,10 @@ else
 
 pcolor=$orange
 
+export GIT_PS1_SHOWCOLORHINTS=true
 PS1="$bblue┌─$green\$(add_venv_info)\
 $bblue($pcolor\u@\h \$(date \"+%a, %d %b %y\")$bblue)─($pcolor\w\
-$bblue)─┐\n$bblue└─($pcolor\$(__git_ps1 \"(git: %s) \")\$(date \"+%H:%M\") \$$bblue)─>$white "
+$bblue)─┐\n$bblue└─($pcolor\$(__git_ps1 \"(git: %b) \")\$(date \"+%H:%M\") \$$bblue)─>$white "
 
 
 											##########################################################

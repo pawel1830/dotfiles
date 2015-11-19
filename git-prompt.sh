@@ -347,13 +347,13 @@ __git_ps1 ()
 		fi
 
 		local f="$w$i$s$u"
-		if [ $pcmode = yes ]; then
 			local gitstring=
 			if [ -n "${GIT_PS1_SHOWCOLORHINTS-}" ]; then
+		
 				local c_red='\e[31m'
 				local c_green='\e[32m'
 				local c_lblue='\e[1;34m'
-				local c_clear='\e[0m'
+				local c_clear='\e[m'
 				local bad_color=$c_red
 				local ok_color=$c_green
 				local branch_color="$c_clear"
@@ -368,32 +368,28 @@ __git_ps1 ()
 
 				# Setting gitstring directly with \[ and \] around colors
 				# is necessary to prevent wrapping issues!
-				gitstring="\[$branch_color\]$branchstring\[$c_clear\]"
+				gitstring="$branch_color$branchstring$c_clear"
 
 				if [ -n "$w$i$s$u$r$p" ]; then
 					gitstring="$gitstring "
 				fi
 				if [ "$w" = "*" ]; then
-					gitstring="$gitstring\[$bad_color\]$w"
+					gitstring="$gitstring$bad_color$w"
 				fi
 				if [ -n "$i" ]; then
-					gitstring="$gitstring\[$ok_color\]$i"
+					gitstring="$gitstring$ok_color$i"
 				fi
 				if [ -n "$s" ]; then
-					gitstring="$gitstring\[$flags_color\]$s"
+					gitstring="$gitstring$flags_color$s"
 				fi
 				if [ -n "$u" ]; then
-					gitstring="$gitstring\[$bad_color\]$u"
+					gitstring="$gitstring$bad_color$u"
 				fi
-				gitstring="$gitstring\[$c_clear\]$r$p"
+				gitstring="$gitstring${pcolor:2:-2}$r$p"
 			else
 				gitstring="$c${b##refs/heads/}${f:+ $f}$r$p"
 			fi
-			gitstring=$(printf -- "$printf_format" "$gitstring")
+			printf -- "$printf_format" "$gitstring"
 			PS1="$ps1pc_start$gitstring$ps1pc_end"
-		else
-			# NO color option unless in PROMPT_COMMAND mode
-			printf -- "$printf_format" "$c${b##refs/heads/}${f:+ $f}$r$p"
-		fi
 	fi
 }
