@@ -20,6 +20,23 @@
 		export turqoise="\[\033[0;38;5;50m\]"
 		export smoothgreen="\[\033[0;38;5;42m\]"
 
+		export grey="\[\033[38;5;239m\]"
+
+		export grey1="\[\033[48;5;232m\]"
+		export grey2="\[\033[48;5;233m\]"
+		export grey3="\[\033[48;5;234m\]"
+		export grey4="\[\033[48;5;235m\]"
+		export grey5="\[\033[48;5;236m\]"
+		export grey6="\[\033[48;5;237m\]"
+		export grey7="\[\033[48;5;238m\]"
+		export grey8="\[\033[48;5;239m\]"
+
+ list_colors(){
+colors="$black black \n$grey grey \n$red red \n$orange orange \n$green green \n$blue blue \n$bblue bblue \n$magenta magenta \n$cyan cyan \n$white white \n$coldblue coldblue \n$smoothblue smoothblue \n$iceblue iceblue \n$turqoise turqoise \n$smoothgreen smoothgreen" 
+echo -e $colors | sed 's/\\\[//g' | sed 's/\\\]//g'
+
+}
+alias "lc"="list_colors"
 source ~/.git-completion.sh
 source ~/.git-prompt.sh
 source ~/.git-flow-completion.bash
@@ -43,20 +60,36 @@ else
 #fi
 }
 
-pcolor=$orange
-
+_ps1_clear() {
+    echo -n "\e[0m"
+}
+#_parse_git_branch() {
+    #if [[ `git status 2> /dev/null` == *nothing\ to\ commit* ]]; then _ps1_fg 99; else _ps1_fg 32; fi
+    #git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/(\1)/'
+#}
+export mini='0'
+export pcolor=$orange
 export GIT_PS1_SHOWCOLORHINTS=true
-PS1="$bblue┌─$green\$(add_venv_info)\
+_update_ps1() {
+if [ $mini == '1' ]; then
+		USER=$(whoami)
+		DIR=$(pwd)
+		dircolor=$white
+		if ! [ -w $DIR ]; then 
+			dircolor=$red
+		fi
+		usercolor=$grey
+		if [ $USER == 'root' ]; then
+			usercolor="\[\033[0;38;5;11m\]"
+		fi
+		local parts="$white$yellow$grey3\t$usercolor$grey2 \u $coldblue$grey4 \H $dircolor$grey7 \w \$ $white"
+    	export PS1="${parts[@]}"
+else
+export PS1="$bblue┌─$green\$(add_venv_info)\
 $bblue($pcolor\u@\h \$(date \"+%a, %d %b %y\")$bblue)─($pcolor\w\
 $bblue)─┐\n$bblue└─($pcolor\$(__git_ps1 \"(git: %b) \")\$(date \"+%H:%M\") \$$bblue)─>$white "
+fi
+}
+export PROMPT_COMMAND="_update_ps1"
 
 
-											##########################################################
-											# enable programmable completion features (you don't need to enable
-											# this, if it's already enabled in /etc/bash.bashrc).
-#											if [ -f /etc/bash_completion ]; then
-#													    . /etc/bash_completion
-#												fi
-											# CDPATH initialisation
-#												CDPATH=.:~:/media/store:/media/sites
-#												PATH="$(ruby -e 'print Gem.user_dir')/bin:$PATH"
