@@ -67,12 +67,14 @@ _ps1_clear() {
     #if [[ `git status 2> /dev/null` == *nothing\ to\ commit* ]]; then _ps1_fg 99; else _ps1_fg 32; fi
     #git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/(\1)/'
 #}
+if [ -z "$mini" ]; then
 export mini='0'
+fi
 export pcolor=$orange
 export GIT_PS1_SHOWCOLORHINTS=true
 _update_ps1() {
 if [ $mini == '1' ]; then
-		USER=$(whoami)
+		#USER=$(whoami)
 		DIR=$(pwd)
 		dircolor=$white
 		if ! [ -w $DIR ]; then 
@@ -82,7 +84,12 @@ if [ $mini == '1' ]; then
 		if [ $USER == 'root' ]; then
 			usercolor="\[\033[0;38;5;11m\]"
 		fi
-		local parts="$white$yellow$grey3\t$usercolor$grey2 \u $coldblue$grey4 \H $dircolor$grey7 \w \$ $white"
+		local git=$(__git_ps1 \"git: %b\")
+		if [ ! -z "$git" ]; then
+		local parts="$usercolor$grey2 \u $coldblue$grey3 \H $dircolor$grey4 \w $grey6 \$(__git_ps1 \"git: %b\")$white$grey6 $white$grey4 \$ $white"
+		else
+		local parts="$usercolor$grey2 \u $coldblue$grey3 \H $dircolor$grey4 \w \$ $white"
+		fi
     	export PS1="${parts[@]}"
 else
 export PS1="$bblue┌─$green\$(add_venv_info)\
