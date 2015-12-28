@@ -86,9 +86,9 @@ if [ $mini == '1' ]; then
 		fi
 		local git=$(__git_ps1 \"git: %b\")
 		if [ ! -z "$git" ]; then
-		local parts="$usercolor$grey2 \u $coldblue$grey3 \H $dircolor$grey4 \w $grey6 \$(__git_ps1 \"git: %b\")$white$grey6 $white$grey4 \$ $white"
+		local parts="$green$grey3\$(add_venv_info)$usercolor$grey2 \u $coldblue$grey3 \H $dircolor$grey4 \w $grey6 \$(__git_ps1 \"git: %b\")$white$grey6 $white$grey4 \$ $white"
 		else
-		local parts="$usercolor$grey2 \u $coldblue$grey3 \H $dircolor$grey4 \w \$ $white"
+		local parts="$green$grey3\$(add_venv_info)$usercolor$grey2 \u $coldblue$grey3 \H $dircolor$grey4 \w \$ $white"
 		fi
     	export PS1="${parts[@]}"
 else
