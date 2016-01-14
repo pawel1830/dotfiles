@@ -68,7 +68,7 @@ _ps1_clear() {
     #git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/(\1)/'
 #}
 if [ -z "$mini" ]; then
-export mini='0'
+export mini='1'
 fi
 export pcolor=$orange
 export GIT_PS1_SHOWCOLORHINTS=true
