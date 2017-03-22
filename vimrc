@@ -37,7 +37,7 @@ NeoBundle 'tpope/vim-fugitive'
 
 " python jedi
 "NeoBundle 'davidhalter/jedi-vim'
-NeoBundle 'davidhalter/jedi-vim', {'autoload':{'filetypes':['python']}} "{{{
+"NeoBundle 'davidhalter/jedi-vim', {'autoload':{'filetypes':['python']}} "{{{
 "	let g:jedi#popup_on_dot=0
 "	let g:jedi#completions_enabled = 0
 ""}}}

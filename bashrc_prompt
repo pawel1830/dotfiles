@@ -77,7 +77,7 @@ if [ $mini == '1' ]; then
 		#USER=$(whoami)
 		DIR=$(pwd)
 		dircolor=$white
-		if ! [ -w $DIR ]; then 
+		if ! [ -w "$DIR" ]; then 
 			dircolor=$red
 		fi
 		usercolor=$grey
