@@ -64,9 +64,9 @@ filetype plugin on
 filetype indent on
 
 " golang syntax, compiler etc
-NeoBundle 'jnwhiteh/vim-golang'
+"NeoBundle 'jnwhiteh/vim-golang'
 " syntax for thrift files
-NeoBundle 'sprsquish/thrift.vim'
+"NeoBundle 'sprsquish/thrift.vim'
 
 " NeoBundle installation check
 NeoBundleCheck
