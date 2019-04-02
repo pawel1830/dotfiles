@@ -76,8 +76,8 @@ if [[ -d ~/.vim/bundle/neobundle.vim ]]; then
 	echo "calling 'git fetch' for ~/.vim/bundle/neobundle.vim"
 	(cd ~/.vim/bundle/neobundle.vim; git fetch)
 else
-	mkdir -p ~/.vim/bundle/
-	git clone git://github.com/Shougo/neobundle.vim ~/.vim/bundle/neobundle.vim
+	curl https://raw.githubusercontent.com/Shougo/neobundle.vim/master/bin/install.sh > install.sh
+	sh ./install.sh && rm install.sh
 fi
 
 # load submodules
